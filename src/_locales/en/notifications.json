@@ -151,6 +151,22 @@
     "message": "The device was unpaired during the request. Please pair your device again.",
     "description": ""
   },
+  "errorNoInternetTitle": {
+    "message": "No internet connection",
+    "description": ""
+  },
+  "errorNoInternetMessage": {
+    "message": "Please check your internet connection and try again.",
+    "description": ""
+  },
+  "errorDevicesUnavailableTitle": {
+    "message": "Cannot reach 2FAS service",
+    "description": ""
+  },
+  "errorDevicesUnavailableMessage": {
+    "message": "We could not verify your paired devices. Please check your connection and try again.",
+    "description": ""
+  },
   "warningTooSoonTitle": {
     "message": "Wait a moment",
     "description": ""

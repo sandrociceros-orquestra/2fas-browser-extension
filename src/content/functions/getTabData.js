@@ -33,10 +33,14 @@ const getTabData = async () => {
     return await browser.runtime.sendMessage({ action: 'getTabData' });
   } catch (err) {
     const errorMessage = err?.message || err?.toString?.() || '';
-    const isContextInvalidated = errorMessage.includes('Could not establish connection') ||
-      errorMessage.includes('Extension context invalidated');
+    const isBenignRuntimeError = errorMessage.includes('Could not establish connection') ||
+      errorMessage.includes('Receiving end does not exist') ||
+      errorMessage.includes('Extension context invalidated') ||
+      errorMessage.includes('Invalid call to runtime.sendMessage') ||
+      errorMessage.includes('Tab not found') ||
+      errorMessage.includes('The message port closed before a response was received');
 
-    if (!isContextInvalidated) {
+    if (!isBenignRuntimeError) {
       await storeLog('error', 14, err, 'getTabData');
     }
 

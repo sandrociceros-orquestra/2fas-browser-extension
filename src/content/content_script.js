@@ -21,27 +21,36 @@ import './styles/content_script.scss';
 import browser from 'webextension-polyfill';
 import { getTabData, portSetup, isInFrame } from '@content/functions';
 import contentOnMessage from '@content/events/contentOnMessage.js';
-import storeLog from '@partials/storeLog.js';
 
 let tabData = null;
+let tabDataPromise = null;
 let isTopFrame = false;
 let onMessageListener = null;
 
 const LISTENER_KEY = '__2fasMessageListener';
 
-/**
- * Main content script initialization function.
- * @async
- * @return {Promise<boolean|void>}
- */
-const contentScriptRun = async () => {
-  portSetup();
+const ensureTabData = () => {
+  if (tabData) {
+    return Promise.resolve(tabData);
+  }
+
+  if (!tabDataPromise) {
+    tabDataPromise = getTabData()
+      .then(data => { tabData = data; return data; })
+      .catch(() => null)
+      .finally(() => { tabDataPromise = null; });
+  }
+
+  return tabDataPromise;
+};
+
+const contentScriptRun = () => {
+  if (!browser?.runtime?.id) {
+    return;
+  }
 
   isTopFrame = !isInFrame();
-
-  if (!browser?.runtime?.id) {
-    return false;
-  }
+  portSetup();
 
   if (window[LISTENER_KEY]) {
     try {
@@ -51,17 +60,21 @@ const contentScriptRun = async () => {
     window[LISTENER_KEY] = null;
   }
 
-  try {
-    tabData = await getTabData();
-  } catch (e) {
-    throw new Error(e);
-  }
-
   onMessageListener = (request, sender, sendResponse) => {
     if (!browser?.runtime?.id) {
-      browser.runtime.onMessage.removeListener(onMessageListener);
+      try {
+        browser.runtime.onMessage.removeListener(onMessageListener);
+      } catch (e) {}
+
       window[LISTENER_KEY] = null;
       return;
+    }
+
+    if (!tabData && request?.action === 'inputToken') {
+      ensureTabData().finally(() => {
+        contentOnMessage(request, sender, sendResponse, tabData, isTopFrame);
+      });
+      return true;
     }
 
     return contentOnMessage(request, sender, sendResponse, tabData, isTopFrame);
@@ -72,15 +85,19 @@ const contentScriptRun = async () => {
 
   window.addEventListener('beforeunload', () => {
     if (onMessageListener) {
-      browser.runtime.onMessage.removeListener(onMessageListener);
+      try {
+        browser.runtime.onMessage.removeListener(onMessageListener);
+      } catch (e) {}
     }
 
     tabData = null;
+    tabDataPromise = null;
     isTopFrame = false;
     onMessageListener = null;
     window[LISTENER_KEY] = null;
   }, { once: true });
+
+  ensureTabData();
 };
 
-contentScriptRun()
-  .catch(err => storeLog('error', 33, err, tabData?.url));
+contentScriptRun();

@@ -140,11 +140,17 @@ const storeLog = async (level, logID = 0, errObj, url = '') => {
     (storage?.browserInfo?.browser_name === 'Chrome' && storage?.browserInfo?.browser_version === '107' && logID === 14) ||
     (storage?.browserInfo?.browser_name === 'Chrome' && storage?.browserInfo?.browser_version === '107.0.0.0' && logID === 14) ||
     (c?.errorInfo?.message?.includes('FILE_ERROR_NO_SPACE')) ||
-    (c?.errorInfo.status === 407) ||
+    (c?.errorInfo?.status === 407) ||
     (c?.errorInfo?.message?.includes('An unexpected error occurred')) ||
     (c?.errorInfo?.message?.includes('Refused to run the JavaScript URL')) ||
     (c?.errorInfo?.message?.includes('QuotaExceededError: storage.local API call exceeded its quota limitations')) ||
-    (c?.errorInfo?.statusText?.includes('Proxy Authentication Required'))
+    (c?.errorInfo?.statusText?.includes('Proxy Authentication Required')) ||
+    (c?.errorInfo?.message?.includes('Could not establish connection')) ||
+    (c?.errorInfo?.message?.includes('Receiving end does not exist')) ||
+    (c?.errorInfo?.message?.includes('Extension context invalidated')) ||
+    (c?.errorInfo?.message?.includes('Invalid call to runtime.sendMessage')) ||
+    (c?.errorInfo?.message?.includes('Tab not found')) ||
+    (c?.errorInfo?.message?.includes('The message port closed before a response was received'))
   ) {
     storage = null;
     m = null;

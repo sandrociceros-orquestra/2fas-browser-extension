@@ -55,6 +55,14 @@ const browserAction = async tab => {
     const syncResult = await syncDevicesWithAPI(storage);
     storage = syncResult.storage;
 
+    if (syncResult.offline) {
+      return TwoFasNotification.show(config.Texts.Error.NoInternet, tab.id);
+    }
+
+    if (syncResult.apiError) {
+      return TwoFasNotification.show(config.Texts.Error.DevicesUnavailable, tab.id);
+    }
+
     if (!syncResult.hasDevices) {
       return openInstallPage();
     }

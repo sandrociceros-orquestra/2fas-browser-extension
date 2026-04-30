@@ -23,6 +23,7 @@ export { default as domainModalFormSubmit } from './domainModalFormSubmit.js';
 export { default as generateDomainsList } from './generateDomainsList.js';
 export { default as generateDevicesList } from './generateDevicesList.js';
 export { default as generateEmptyDeviceRow } from './generateEmptyDeviceRow.js';
+export { default as generateDevicesErrorRow } from './generateDevicesErrorRow.js';
 export { default as generateEmptyShortcutBox } from './generateEmptyShortcutBox.js';
 export { default as generateShortcutBox } from './generateShortcutBox.js';
 export { default as generateShortcutLink } from './generateShortcutLink.js';

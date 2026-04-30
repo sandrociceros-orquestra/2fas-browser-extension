@@ -45,6 +45,16 @@ const sendMessageToAllFrames = async (tabId, message) => {
     return false;
   }
 
+  const seenFrameIds = new Set();
+  frames = frames.filter(frame => {
+    if (seenFrameIds.has(frame.frameId)) {
+      return false;
+    }
+
+    seenFrameIds.add(frame.frameId);
+    return true;
+  });
+
   return Promise.all(
     frames.map(frame => browser.tabs.sendMessage(tabId, message, { frameId: frame.frameId }).catch(() => false))
   );

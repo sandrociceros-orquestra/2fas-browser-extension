@@ -25,16 +25,26 @@ import storeLog from '@partials/storeLog.js';
  * Syncs local devices storage with the API and returns updated storage.
  *
  * @param {Object} storage - The current local storage data containing extensionID and devices
- * @returns {Promise<Object>} Object with updated storage, hasDevices flag, and devicesChanged flag
+ * @returns {Promise<Object>} Object with updated storage, hasDevices flag, devicesChanged flag,
+ *   apiError flag (true when the API request failed or returned an unexpected payload),
+ *   and offline flag (true when no internet connection was detected before the request).
  */
 const syncDevicesWithAPI = async storage => {
   const result = {
     storage,
     hasDevices: false,
-    devicesChanged: false
+    devicesChanged: false,
+    apiError: false,
+    offline: false
   };
 
   if (!storage?.extensionID) {
+    return result;
+  }
+
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    result.offline = true;
+    result.apiError = true;
     return result;
   }
 
@@ -42,6 +52,7 @@ const syncDevicesWithAPI = async storage => {
     const apiDevices = await new SDK().getAllPairedDevices(storage.extensionID);
 
     if (!Array.isArray(apiDevices)) {
+      result.apiError = true;
       return result;
     }
 
@@ -84,6 +95,7 @@ const syncDevicesWithAPI = async storage => {
     return result;
   } catch (err) {
     await storeLog('error', 39, err, 'syncDevicesWithAPI');
+    result.apiError = true;
     return result;
   }
 };

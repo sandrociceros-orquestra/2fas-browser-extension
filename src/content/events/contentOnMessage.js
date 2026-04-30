@@ -84,6 +84,10 @@ const contentOnMessage = (request, sender, sendResponse, tabData, isTopFrame) =>
 
         if (lastFocusedInput) {
           tokenInput = getTokenInput(lastFocusedInput);
+
+          if (tokenInput) {
+            tokenInput.removeAttribute('data-twofas-input');
+          }
         }
 
         if (!tokenInput) {

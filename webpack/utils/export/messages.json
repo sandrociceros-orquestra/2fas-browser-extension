@@ -1,196 +1,810 @@
 {
-  "2fasSupport": "2FAS Support",
-  "2fasLogo": "2FAS Logo",
-  "2fasAuthApp": "2FAS Auth App",
-  "2fasAuthGP": "2FAS Auth on Google Play",
-  "2fasAuthAP": "2FAS Auth on App Store",
-  "unknown": "Unknown",
-  "unknownOS": "Unknown OS",
-  "browserOnOs": "on",
-  "close": "Close",
-  "set": "Set",
-  "edit": "Edit",
-  "info": "Info",
-  "next": "Next",
-  "previous": "Previous",
-  "save": "Save",
-  "version": "Version",
-  "yes": "Yes",
-  "add": "Add",
-  "cancel": "Cancel",
-  "shortcut": "Shortcut",
-  "icon": "Icon",
-  "options": "Options",
-  "neverShowAgain": "Never show again",
-  "isNotSupportedByExt": "is not supported by 2FAS Extension",
-  "shortcutSetDesc": "Set a shortcut to open the 2FAS Browser Extension on any page.",
-  "shortcutUseDesc": "Use this shortcut to open the 2FAS Browser Extension on any page.",
-  "pushNotifications": "Push notifications",
-  "learnMore": "Learn more",
-  "advanced": "Advanced",
-  "playVideo": "Play video",
-  "extNicknameHeader": "Extension's nickname",
-  "extNicknameDesc": "Update the nickname for the 2FAS Browser Extension that will be visible on your mobile device. You can also change it later in the extension settings.",
-  "extNicknameLabel": "This browser’s nickname:",
-  "extNicknamePlaceholder": "Enter extension name...",
-  "openTutorial": "Open tutorial",
-  "download": "Download",
-  "qrCode": "QR Code",
-  "modalDisconnectDeviceHeader": "Disconnect device",
-  "modalDisconnectDeviceText": "You are attempting to disconnect the device \"DEVICE_NAME\" from this browser extension. Are you sure?",
-  "modalSafariResetHeader": "Browser Extension reset",
-  "modalSafariResetText": "You are attempting to reset the 2FAS Browser Extension. Are you sure?",
-  "modalExcludeDomainHeader": "Remove domain from excluded list",
-  "modalExcludeDomainText": "You are attempting to remove domain \"DOMAIN\" from excluded list. Are you sure?",
-  "noPairedDevices": "No paired devices found",
-  "noExcludedDomains": "No excluded domains found",
-  "deviceName": "Device name",
-  "pairingDate": "Pairing date",
-  "platform": "Platform",
-  "disconnect": "Disconnect",
-  "domain": "Domain",
-  "gotIt": "Got it",
-  "install": "Install",
-  "2faAuthenticator2FAS": "2FA Authenticator (2FAS)",
-  "inActiveTabInfo": "Please refresh this tab to use the 2FAS Browser Extension",
-  "installTitle": "2FAS Browser Extension | Configuration",
-  "installH1": "To start, you need to pair this extension with the 2FAS Auth mobile application.",
-  "installAppInstalled": "I've installed the app",
-  "installScan": "Scan this code with your 2FAS Auth mobile app",
-  "installStep1": "Open the 2FAS Auth mobile app",
-  "installStep2": "Go to Settings → Browser Extension",
-  "installStep3": "Tap \"Pair with web browser\" and scan the QR code",
-  "installSuccessHeader": "2FAS Browser Extension is successfully paired with your 2FAS Auth app",
-  "installSuccessSubheader": "Now you can quickly autofill Two-Factor forms with mobile app confirmation.",
-  "installStart": "Learn how it works",
-  "installGoToSettings": "Go to settings",
-  "installQuestions": "Any questions? Read our",
-  "installBackToStep1": "Back to step 1",
-  "installQRTimeoutText": "The QR code has expired",
-  "installQRTimeoutButton": "Click here to regenerate",
-  "appDesc": "2FAS Browser Extension is simple, private, and secure: 1 click, 1 tap, and your token is automatically entered!",
-  "shortcutDesc": "Send a request to 2FAS",
-  "january": "January",
-  "february": "February",
-  "march": "March",
-  "april": "April",
-  "may": "May",
-  "june": "June",
-  "july": "July",
-  "august": "August",
-  "september": "September",
-  "october": "October",
-  "november": "November",
-  "december": "December",
-  "errorGeneralTitle": "Error",
-  "errorGeneralMessage": "Please refresh and try again.",
-  "errorUndefinedErrorTitle": "Something went wrong",
-  "errorUndefinedErrorMessage": "Please refresh and try again.",
-  "errorTimeoutTitle": "Timeout",
-  "errorTimeoutMessage": "Closed connection due to a time limit. Please click regenerate button to try again.",
-  "errorPushExpiredTitle": "Push expired for DOMAIN",
-  "errorPushExpiredMessage": "Please try again.",
-  "errorWebSocketTitle": "WebSocket Error",
-  "errorWebSocketMessage": "Something went wrong with the WebSocket request. Please try again.",
-  "errorOnInstallErrorTitle": "Something went wrong",
-  "errorOnInstallErrorMessage": "Please restart your browser or reinstall the extension.",
-  "errorExtNameRequiredTitle": "Extension name required",
-  "errorExtNameRequiredMessage": "Please enter the extension name.",
-  "errorExtNameMinLengthTitle": "Extension name is too short",
-  "errorExtNameMinLengthMessage": "Please enter the extension name with at least 3 characters.",
-  "errorExtNameMaxLengthTitle": "Extension name is too long",
-  "errorExtNameMaxLengthMessage": "Please enter the extension name with no more than 32 characters.",
-  "errorConfigFirstTitle": "Configuration required",
-  "errorConfigFirstMessage": "Please configure 2FAS Extension first.",
-  "errorRemoveDeviceBadDataTitle": "Device data error",
-  "errorRemoveDeviceBadDataMessage": "Please refresh and try again.",
-  "errorRemoveDomainBadDataTitle": "Domain data error",
-  "errorRemoveDomainBadDataMessage": "Please refresh and try again.",
-  "errorStorageCorruptedTitle": "Extension storage is corrupted",
-  "errorStorageCorruptedMessage": "We will try to fix it for you. Please wait.",
-  "errorInactiveTabTitle": "Inactive tab",
-  "errorInactiveTabMessage": "Please refresh this tab to use the 2FAS Browser Extension.",
-  "errorLackOfTabTitle": "Your tab has been closed",
-  "errorLackOfTabMessage": "The request will be ignored",
-  "errorInputNotExistTitle": "Input element does not exists",
-  "errorInputNotExistMessage": "Please refresh and try again.",
-  "errorStorageIntegrityTitle": "Browser Extension data error",
-  "errorStorageIntegrityMessage": "Please reinstall browser extension or contact with 2FAS Support on Discord",
-  "errorOldRequestTitle": "Outdated request",
-  "errorOldRequestMessage": "It seems like you're responding to an old request that can no longer be executed",
-  "warningTooSoonTitle": "Wait a moment",
-  "warningTooSoonMessage": "Please wait DIFF seconds before sending another request.",
-  "successPushSentTitle": "Push sent",
-  "successPushSentMessage": "Please check your phone and accept your login request.",
-  "successPushSentClipboardTitle": "Push sent",
-  "successPushSentClipboardMessage": "Please check your phone and accept your login request. Copy your token and paste it into the correct input on the website.",
-  "successExtNameUpdatedTitle": "Success",
-  "successExtNameUpdatedMessage": "Extension name updated",
-  "successDeviceDisconnectedTitle": "Success",
-  "successDeviceDisconnectedMessage": "Device disconnected",
-  "successSafariResetTitle": "Success",
-  "successSafariResetMessage": "Browser Extension configuration removed",
-  "successDomainExcludedTitle": "Success",
-  "successDomainExcludedMessage": "Domain added to excluded list",
-  "successDomainExcludedRemovedTitle": "Success",
-  "successDomainExcludedRemovedMessage": "Domain removed from excluded list",
-  "infoNativeNotificationsTitle": "2FAS Notifications",
-  "infoNativeNotificationsMessage": "From now on, you'll be receiving system notifications instead of 2FAS custom ones. If you'd like to change this, go to the ",
-  "infoEnabledNativeNotifications": "extension's settings",
-  "infoUnsupportedProtocolTitle": "Info",
-  "infoUnsupportedProtocolMessage": "Only HTTP and HTTPS protocols are supported by 2FAS Extension",
-  "infoBrowserActionWithoutTabTitle": "Info",
-  "infoBrowserActionWithoutTabMessage": "Using outside the browser is not supported by 2FAS Extension",
-  "infoCopiedToClipboardTitle": "Successfully copied to clipboard",
-  "infoCopiedToClipboardMessage": "You can now paste the token into the input field",
-  "infoTestTitle": "2FAS Notification",
-  "infoTestMessage": "Hi! This is just a test",
-  "optionsTitle": "2FAS Browser Extension | Options",
-  "optionsHeader": "2FAS Browser Extension Settings",
-  "optionsIntroHeader": "Introduction to 2FAS Browser Extension",
-  "optionsIntro": "Intro",
-  "optionsSettings": "Settings",
-  "optionsCheckExt": "Ext Check",
-  "optionsAbout": "About 2FAS",
-  "optionsDonate": "Donate",
-  "optionsPairedHeader": "Paired devices:",
-  "optionsAddAnotherDevice": "Add another device",
-  "optionsAutoSubmitSwitchHeader": "[EXPERIMENTAL] Auto submit:",
-  "optionsAutoSubmitSwitchLabel": "Enable auto submit for 2FA forms",
-  "optionsExcludedDomainsHeader": "[EXPERIMENTAL] Auto submit excluded domains:",
-  "optionsRemoveFromExcluded": "Remove from excluded",
-  "optionsExcludeAnotherDomain": "Exclude domain",
-  "optionsExcludeImportDefault": "Import default list",
-  "optionsDomainModalHeader": "Exclude new domain",
-  "optionsDomainModalText": "With the form below, you can add your domain to exclusion list, ensuring it won't be subjected to the auto submit mechanism.",
-  "optionsDomainInputPlaceholder": "Type in domain to exclude...",
-  "optionsLogsLabel": "Approve 2FAS Browser Extension logs",
-  "optionsLogsDesc": "Help us improve our browser extension by approving anonymous logs from your browser regarding 2FAS Browser Extension errors only.",
-  "optionsContextMenuLabel": "Show 2FAS Browser Extension option in context menu",
-  "optionsPushDesc": "Choose a notification mechanism which will prompt you about communication with the 2FAS Auth mobile app when you use this browser extension.",
-  "optionsPushCustom": "2FAS Custom Notifications",
-  "optionsPushNative": "Native Browser's Notifications",
-  "optionsPushTest": "Test push Notification",
-  "optionsPushConfigDesc1": "Native Browser's Notifications do not work?",
-  "optionsPushConfigDesc2": "Make sure they are enabled in the system settings",
-  "optionsShortcutFirefoxDesc": "To set or change this shortcut go to your browser settings, and extensions, then click on the gear icon and choose “Manage Extension Shortcuts.”",
-  "optionsPinHeader": "Pin 2FAS for faster authentication",
-  "optionsPinDesc": "Check the Extension List to make it visible.",
-  "optionsPinSafariStep1": "Right click on the address bar, select Toolbar customization",
-  "optionsPinSafariStep2": "Find 2FAS icon on the list, drag it to the toolbar",
-  "optionsPinOperaStep2Header": "Find added Extension on the list and click “Details”.",
-  "optionsPinOperaStep2SubHeader": "Then turn on “Allow on site with finding results”.",
-  "optionsPinSafariToolbarCustomization": "Toolbar customization",
-  "optionsDangerZone": "Danger Zone",
-  "optionsSafariResetDesc": "By resetting the extension you'll erase all your 2FAS Browser Extension settings and paired devices. Do so, if you're absolutely sure and aware of losing your settings and paired devices with the 2FAS Browser Extension! This action is not reversible!",
-  "optionsSafariReset": "Reset Browser Extension",
-  "optionsDomainRequired": "Domain is required",
-  "optionsDomainTooLong": "Domain is too long",
-  "optionsDomainIncorrect": "Domain is not correct",
-  "optionsDomainExists": "Domain exists on excluded list",
-  "optionsIconDesc": "Choose an icon for the 2FAS Browser Extension to personalize its appearance in your browser.",
-  "tokenHeader": "Your token",
-  "tokenCopy": "Copy",
-  "tokenCopied": "Copied",
-  "tokenDescription": "Copy the token and paste it in the input field. The token will expire in 30 seconds."
+  "2fasSupport": {
+    "message": "2FAS Support",
+    "description": ""
+  },
+  "2fasLogo": {
+    "message": "2FAS Logo",
+    "description": ""
+  },
+  "2fasAuthApp": {
+    "message": "2FAS Auth App",
+    "description": ""
+  },
+  "2fasAuthGP": {
+    "message": "2FAS Auth on Google Play",
+    "description": ""
+  },
+  "2fasAuthAP": {
+    "message": "2FAS Auth on App Store",
+    "description": ""
+  },
+  "unknown": {
+    "message": "Unknown",
+    "description": ""
+  },
+  "unknownOS": {
+    "message": "Unknown OS",
+    "description": ""
+  },
+  "browserOnOs": {
+    "message": "on",
+    "description": ""
+  },
+  "close": {
+    "message": "Close",
+    "description": ""
+  },
+  "set": {
+    "message": "Set",
+    "description": ""
+  },
+  "edit": {
+    "message": "Edit",
+    "description": ""
+  },
+  "info": {
+    "message": "Info",
+    "description": ""
+  },
+  "next": {
+    "message": "Next",
+    "description": ""
+  },
+  "previous": {
+    "message": "Previous",
+    "description": ""
+  },
+  "save": {
+    "message": "Save",
+    "description": ""
+  },
+  "version": {
+    "message": "Version",
+    "description": ""
+  },
+  "yes": {
+    "message": "Yes",
+    "description": ""
+  },
+  "add": {
+    "message": "Add",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "shortcut": {
+    "message": "Shortcut",
+    "description": ""
+  },
+  "icon": {
+    "message": "Icon",
+    "description": ""
+  },
+  "options": {
+    "message": "Options",
+    "description": ""
+  },
+  "neverShowAgain": {
+    "message": "Never show again",
+    "description": ""
+  },
+  "isNotSupportedByExt": {
+    "message": "is not supported by 2FAS Extension",
+    "description": ""
+  },
+  "shortcutSetDesc": {
+    "message": "Set a shortcut to open the 2FAS Browser Extension on any page.",
+    "description": ""
+  },
+  "shortcutUseDesc": {
+    "message": "Use this shortcut to open the 2FAS Browser Extension on any page.",
+    "description": ""
+  },
+  "pushNotifications": {
+    "message": "Push notifications",
+    "description": ""
+  },
+  "learnMore": {
+    "message": "Learn more",
+    "description": ""
+  },
+  "advanced": {
+    "message": "Advanced",
+    "description": ""
+  },
+  "playVideo": {
+    "message": "Play video",
+    "description": ""
+  },
+  "extNicknameHeader": {
+    "message": "Extension's nickname",
+    "description": ""
+  },
+  "extNicknameDesc": {
+    "message": "Update the nickname for the 2FAS Browser Extension that will be visible on your mobile device. You can also change it later in the extension settings.",
+    "description": ""
+  },
+  "extNicknameLabel": {
+    "message": "This browser’s nickname:",
+    "description": ""
+  },
+  "extNicknamePlaceholder": {
+    "message": "Enter extension name...",
+    "description": ""
+  },
+  "openTutorial": {
+    "message": "Open tutorial",
+    "description": ""
+  },
+  "download": {
+    "message": "Download",
+    "description": ""
+  },
+  "qrCode": {
+    "message": "QR Code",
+    "description": ""
+  },
+  "modalDisconnectDeviceHeader": {
+    "message": "Disconnect device",
+    "description": ""
+  },
+  "modalDisconnectDeviceText": {
+    "message": "You are attempting to disconnect the device \"DEVICE_NAME\" from this browser extension. Are you sure?",
+    "description": ""
+  },
+  "modalSafariResetHeader": {
+    "message": "Browser Extension reset",
+    "description": ""
+  },
+  "modalSafariResetText": {
+    "message": "You are attempting to reset the 2FAS Browser Extension. Are you sure?",
+    "description": ""
+  },
+  "modalExcludeDomainHeader": {
+    "message": "Remove domain from exclusion list",
+    "description": ""
+  },
+  "modalExcludeDomainText": {
+    "message": "You are attempting to remove the domain \"DOMAIN\" from the exclusion list. Are you sure?",
+    "description": ""
+  },
+  "noPairedDevices": {
+    "message": "No paired devices found",
+    "description": ""
+  },
+  "devicesListOffline": {
+    "message": "Cannot load paired devices — no internet connection. Please reconnect and refresh this page.",
+    "description": ""
+  },
+  "devicesListError": {
+    "message": "Cannot load paired devices — the 2FAS service is unreachable. Please refresh this page to try again.",
+    "description": ""
+  },
+  "noExcludedDomains": {
+    "message": "No excluded domains found",
+    "description": ""
+  },
+  "deviceName": {
+    "message": "Device name",
+    "description": ""
+  },
+  "pairingDate": {
+    "message": "Pairing date",
+    "description": ""
+  },
+  "platform": {
+    "message": "Platform",
+    "description": ""
+  },
+  "disconnect": {
+    "message": "Disconnect",
+    "description": ""
+  },
+  "domain": {
+    "message": "Domain",
+    "description": ""
+  },
+  "gotIt": {
+    "message": "Got it",
+    "description": ""
+  },
+  "install": {
+    "message": "Install",
+    "description": ""
+  },
+  "2faAuthenticator2FAS": {
+    "message": "2FA Authenticator (2FAS)",
+    "description": ""
+  },
+  "inActiveTabInfo": {
+    "message": "Please refresh this tab to use the 2FAS Browser Extension",
+    "description": ""
+  },
+  "installTitle": {
+    "message": "2FAS Browser Extension | Configuration",
+    "description": ""
+  },
+  "installH1": {
+    "message": "To start, you need to pair this extension with the 2FAS Auth mobile application.",
+    "description": ""
+  },
+  "installAppInstalled": {
+    "message": "I've installed the app",
+    "description": ""
+  },
+  "installScan": {
+    "message": "Scan this code with your 2FAS Auth mobile app",
+    "description": ""
+  },
+  "installStep1": {
+    "message": "Open the 2FAS Auth mobile app",
+    "description": ""
+  },
+  "installStep2": {
+    "message": "Go to Settings → Browser Extension",
+    "description": ""
+  },
+  "installStep3": {
+    "message": "Tap \"Pair with web browser\" and scan the QR code",
+    "description": ""
+  },
+  "installSuccessHeader": {
+    "message": "2FAS Browser Extension is successfully paired with your 2FAS Auth app",
+    "description": ""
+  },
+  "installSuccessSubheader": {
+    "message": "Now you can quickly autofill Two-Factor forms with mobile app confirmation.",
+    "description": ""
+  },
+  "installStart": {
+    "message": "Learn how it works",
+    "description": ""
+  },
+  "installGoToSettings": {
+    "message": "Go to settings",
+    "description": ""
+  },
+  "installQuestions": {
+    "message": "Any questions? Read our",
+    "description": ""
+  },
+  "installBackToStep1": {
+    "message": "Back to step 1",
+    "description": ""
+  },
+  "installQRTimeoutText": {
+    "message": "The QR code has expired",
+    "description": ""
+  },
+  "installQRTimeoutButton": {
+    "message": "Click here to regenerate",
+    "description": ""
+  },
+  "appDesc": {
+    "message": "2FAS Browser Extension is simple, private, and secure: 1 click, 1 tap, and your token is automatically entered!",
+    "description": ""
+  },
+  "shortcutDesc": {
+    "message": "Send a request to 2FAS",
+    "description": ""
+  },
+  "january": {
+    "message": "January",
+    "description": ""
+  },
+  "february": {
+    "message": "February",
+    "description": ""
+  },
+  "march": {
+    "message": "March",
+    "description": ""
+  },
+  "april": {
+    "message": "April",
+    "description": ""
+  },
+  "may": {
+    "message": "May",
+    "description": ""
+  },
+  "june": {
+    "message": "June",
+    "description": ""
+  },
+  "july": {
+    "message": "July",
+    "description": ""
+  },
+  "august": {
+    "message": "August",
+    "description": ""
+  },
+  "september": {
+    "message": "September",
+    "description": ""
+  },
+  "october": {
+    "message": "October",
+    "description": ""
+  },
+  "november": {
+    "message": "November",
+    "description": ""
+  },
+  "december": {
+    "message": "December",
+    "description": ""
+  },
+  "errorGeneralTitle": {
+    "message": "Error",
+    "description": ""
+  },
+  "errorGeneralMessage": {
+    "message": "Please refresh and try again.",
+    "description": ""
+  },
+  "errorUndefinedErrorTitle": {
+    "message": "Something went wrong",
+    "description": ""
+  },
+  "errorUndefinedErrorMessage": {
+    "message": "Please refresh and try again.",
+    "description": ""
+  },
+  "errorTimeoutTitle": {
+    "message": "Timeout",
+    "description": ""
+  },
+  "errorTimeoutMessage": {
+    "message": "Closed connection due to a time limit. Please click regenerate button to try again.",
+    "description": ""
+  },
+  "errorPushExpiredTitle": {
+    "message": "Push expired for DOMAIN",
+    "description": ""
+  },
+  "errorPushExpiredMessage": {
+    "message": "Please try again.",
+    "description": ""
+  },
+  "errorWebSocketTitle": {
+    "message": "WebSocket Error",
+    "description": ""
+  },
+  "errorWebSocketMessage": {
+    "message": "Something went wrong with the WebSocket request. Please try again.",
+    "description": ""
+  },
+  "errorOnInstallErrorTitle": {
+    "message": "Something went wrong",
+    "description": ""
+  },
+  "errorOnInstallErrorMessage": {
+    "message": "Please restart your browser or reinstall the extension.",
+    "description": ""
+  },
+  "errorExtNameRequiredTitle": {
+    "message": "Extension name required",
+    "description": ""
+  },
+  "errorExtNameRequiredMessage": {
+    "message": "Please enter the extension name.",
+    "description": ""
+  },
+  "errorExtNameMinLengthTitle": {
+    "message": "Extension name is too short",
+    "description": ""
+  },
+  "errorExtNameMinLengthMessage": {
+    "message": "Please enter the extension name with at least 3 characters.",
+    "description": ""
+  },
+  "errorExtNameMaxLengthTitle": {
+    "message": "Extension name is too long",
+    "description": ""
+  },
+  "errorExtNameMaxLengthMessage": {
+    "message": "Please enter the extension name with no more than 32 characters.",
+    "description": ""
+  },
+  "errorConfigFirstTitle": {
+    "message": "Configuration required",
+    "description": ""
+  },
+  "errorConfigFirstMessage": {
+    "message": "Please configure 2FAS Extension first.",
+    "description": ""
+  },
+  "errorRemoveDeviceBadDataTitle": {
+    "message": "Device data error",
+    "description": ""
+  },
+  "errorRemoveDeviceBadDataMessage": {
+    "message": "Please refresh and try again.",
+    "description": ""
+  },
+  "errorRemoveDomainBadDataTitle": {
+    "message": "Domain data error",
+    "description": ""
+  },
+  "errorRemoveDomainBadDataMessage": {
+    "message": "Please refresh and try again.",
+    "description": ""
+  },
+  "errorStorageCorruptedTitle": {
+    "message": "Extension storage is corrupted",
+    "description": ""
+  },
+  "errorStorageCorruptedMessage": {
+    "message": "We will try to fix it for you. Please wait.",
+    "description": ""
+  },
+  "errorInactiveTabTitle": {
+    "message": "Inactive tab",
+    "description": ""
+  },
+  "errorInactiveTabMessage": {
+    "message": "Please refresh this tab to use the 2FAS Browser Extension.",
+    "description": ""
+  },
+  "errorLackOfTabTitle": {
+    "message": "Your tab has been closed",
+    "description": ""
+  },
+  "errorLackOfTabMessage": {
+    "message": "The request will be ignored",
+    "description": ""
+  },
+  "errorInputNotExistTitle": {
+    "message": "Input element does not exist",
+    "description": ""
+  },
+  "errorInputNotExistMessage": {
+    "message": "Please refresh and try again.",
+    "description": ""
+  },
+  "errorStorageIntegrityTitle": {
+    "message": "Browser Extension data error",
+    "description": ""
+  },
+  "errorStorageIntegrityMessage": {
+    "message": "Please reinstall the browser extension or contact 2FAS Community Support on Discord",
+    "description": ""
+  },
+  "errorOldRequestTitle": {
+    "message": "Outdated request",
+    "description": ""
+  },
+  "errorOldRequestMessage": {
+    "message": "It seems like you're responding to an outdated request that can no longer be executed",
+    "description": ""
+  },
+  "errorDeviceUnpairedTitle": {
+    "message": "Device unpaired",
+    "description": ""
+  },
+  "errorDeviceUnpairedMessage": {
+    "message": "The device was unpaired during the request. Please pair your device again.",
+    "description": ""
+  },
+  "errorNoInternetTitle": {
+    "message": "No internet connection",
+    "description": ""
+  },
+  "errorNoInternetMessage": {
+    "message": "Please check your internet connection and try again.",
+    "description": ""
+  },
+  "errorDevicesUnavailableTitle": {
+    "message": "Cannot reach 2FAS service",
+    "description": ""
+  },
+  "errorDevicesUnavailableMessage": {
+    "message": "We could not verify your paired devices. Please check your connection and try again.",
+    "description": ""
+  },
+  "warningTooSoonTitle": {
+    "message": "Wait a moment",
+    "description": ""
+  },
+  "warningTooSoonMessage": {
+    "message": "Please wait DIFF seconds before sending another request.",
+    "description": ""
+  },
+  "successPushSentTitle": {
+    "message": "Push sent",
+    "description": ""
+  },
+  "successPushSentMessage": {
+    "message": "Please check your phone and accept your login request.",
+    "description": ""
+  },
+  "successPushSentClipboardTitle": {
+    "message": "Push sent",
+    "description": ""
+  },
+  "successPushSentClipboardMessage": {
+    "message": "Please check your phone and accept the login request. Then copy your token and paste it into the correct input on the website.",
+    "description": ""
+  },
+  "successExtNameUpdatedTitle": {
+    "message": "Success",
+    "description": ""
+  },
+  "successExtNameUpdatedMessage": {
+    "message": "Extension name updated",
+    "description": ""
+  },
+  "successDeviceDisconnectedTitle": {
+    "message": "Success",
+    "description": ""
+  },
+  "successDeviceDisconnectedMessage": {
+    "message": "Device disconnected",
+    "description": ""
+  },
+  "successSafariResetTitle": {
+    "message": "Success",
+    "description": ""
+  },
+  "successSafariResetMessage": {
+    "message": "Browser Extension configuration removed",
+    "description": ""
+  },
+  "successDomainExcludedTitle": {
+    "message": "Success",
+    "description": ""
+  },
+  "successDomainExcludedMessage": {
+    "message": "Domain added to exclusion list",
+    "description": ""
+  },
+  "successDomainExcludedRemovedTitle": {
+    "message": "Success",
+    "description": ""
+  },
+  "successDomainExcludedRemovedMessage": {
+    "message": "Domain removed from exclusion list",
+    "description": ""
+  },
+  "infoUnsupportedProtocolTitle": {
+    "message": "Info",
+    "description": ""
+  },
+  "infoUnsupportedProtocolMessage": {
+    "message": "Only HTTP and HTTPS protocols are supported by 2FAS Extension",
+    "description": ""
+  },
+  "infoBrowserActionWithoutTabTitle": {
+    "message": "Info",
+    "description": ""
+  },
+  "infoBrowserActionWithoutTabMessage": {
+    "message": "Using outside the browser is not supported by 2FAS Extension",
+    "description": ""
+  },
+  "infoCopiedToClipboardTitle": {
+    "message": "Successfully copied to clipboard",
+    "description": ""
+  },
+  "infoCopiedToClipboardMessage": {
+    "message": "You can now paste the token into the input field",
+    "description": ""
+  },
+  "infoTestTitle": {
+    "message": "2FAS Notification",
+    "description": ""
+  },
+  "infoTestMessage": {
+    "message": "Hi! This is just a test",
+    "description": ""
+  },
+  "warningCrossDomainTitle": {
+    "message": "Cross-domain autofill",
+    "description": ""
+  },
+  "warningCrossDomainMessage": {
+    "message": "This form is on a different domain (CURRENT_DOMAIN) than the main page (TOP_DOMAIN). Do you want to continue with autofill?",
+    "description": ""
+  },
+  "warningCrossDomainNoAccessMessage": {
+    "message": "This form is on CURRENT_DOMAIN which appears to be in a cross-domain iframe. Do you want to continue with autofill?",
+    "description": ""
+  },
+  "optionsTitle": {
+    "message": "2FAS Browser Extension | Options",
+    "description": ""
+  },
+  "optionsHeader": {
+    "message": "2FAS Browser Extension Settings",
+    "description": ""
+  },
+  "optionsIntroHeader": {
+    "message": "Introduction to 2FAS Browser Extension",
+    "description": ""
+  },
+  "optionsIntro": {
+    "message": "Intro",
+    "description": ""
+  },
+  "optionsSettings": {
+    "message": "Settings",
+    "description": ""
+  },
+  "optionsCheckExt": {
+    "message": "Ext Check",
+    "description": ""
+  },
+  "optionsAbout": {
+    "message": "About 2FAS",
+    "description": ""
+  },
+  "optionsDonate": {
+    "message": "Donate",
+    "description": ""
+  },
+  "optionsPairedHeader": {
+    "message": "Paired devices:",
+    "description": ""
+  },
+  "optionsAddAnotherDevice": {
+    "message": "Add another device",
+    "description": ""
+  },
+  "optionsAutoSubmitSwitchHeader": {
+    "message": "[EXPERIMENTAL] Auto submit:",
+    "description": ""
+  },
+  "optionsAutoSubmitSwitchLabel": {
+    "message": "Enable auto submit for 2FA forms",
+    "description": ""
+  },
+  "optionsExcludedDomainsHeader": {
+    "message": "[EXPERIMENTAL] Auto submit excluded domains:",
+    "description": ""
+  },
+  "optionsRemoveFromExcluded": {
+    "message": "Remove from exclusion list",
+    "description": ""
+  },
+  "optionsExcludeAnotherDomain": {
+    "message": "Exclude domain",
+    "description": ""
+  },
+  "optionsExcludeImportDefault": {
+    "message": "Import default list",
+    "description": ""
+  },
+  "optionsDomainModalHeader": {
+    "message": "Exclude new domain",
+    "description": ""
+  },
+  "optionsDomainModalText": {
+    "message": "You can add your domain to the exclusion list using the form below, ensuring it won't be subjected to the auto-submit mechanism.",
+    "description": ""
+  },
+  "optionsDomainInputPlaceholder": {
+    "message": "Type in domain to exclude...",
+    "description": ""
+  },
+  "optionsLogsLabel": {
+    "message": "Approve 2FAS Browser Extension logs",
+    "description": ""
+  },
+  "optionsLogsDesc": {
+    "message": "Help us improve our browser extension by approving anonymous logs from your browser regarding 2FAS Browser Extension errors only.",
+    "description": ""
+  },
+  "optionsContextMenuLabel": {
+    "message": "Show 2FAS Browser Extension option in context menu",
+    "description": ""
+  },
+  "optionsPushDesc": {
+    "message": "Choose a notification mechanism which will prompt you about communication with the 2FAS Auth mobile app when you use this browser extension.",
+    "description": ""
+  },
+  "optionsPushCustom": {
+    "message": "2FAS Custom Notifications",
+    "description": ""
+  },
+  "optionsPushNative": {
+    "message": "Native Browser's Notifications",
+    "description": ""
+  },
+  "optionsPushTest": {
+    "message": "Test push Notification",
+    "description": ""
+  },
+  "optionsPushConfigDesc1": {
+    "message": "Native Browser's Notifications do not work?",
+    "description": ""
+  },
+  "optionsPushConfigDesc2": {
+    "message": "Make sure they are enabled in the system settings",
+    "description": ""
+  },
+  "optionsShortcutFirefoxDesc": {
+    "message": "To set or change this shortcut go to your browser settings, and extensions, then click on the gear icon and choose “Manage Extension Shortcuts.”",
+    "description": ""
+  },
+  "optionsPinHeader": {
+    "message": "Pin 2FAS for faster authentication",
+    "description": ""
+  },
+  "optionsPinDesc": {
+    "message": "Check the Extension List to make it visible.",
+    "description": ""
+  },
+  "optionsPinSafariStep1": {
+    "message": "Right click on the address bar, select Toolbar customization",
+    "description": ""
+  },
+  "optionsPinSafariStep2": {
+    "message": "Find 2FAS icon on the list, drag it to the toolbar",
+    "description": ""
+  },
+  "optionsPinOperaStep2Header": {
+    "message": "Find added Extension on the list and click “Details”.",
+    "description": ""
+  },
+  "optionsPinOperaStep2SubHeader": {
+    "message": "Then turn on “Allow on site with finding results”.",
+    "description": ""
+  },
+  "optionsPinSafariToolbarCustomization": {
+    "message": "Toolbar customization",
+    "description": ""
+  },
+  "optionsDangerZone": {
+    "message": "Danger Zone",
+    "description": ""
+  },
+  "optionsSafariResetDesc": {
+    "message": "By resetting the extension you'll erase all your 2FAS Browser Extension settings and paired devices. Do so, if you're absolutely sure and aware of losing your settings and paired devices with the 2FAS Browser Extension! This action is not reversible!",
+    "description": ""
+  },
+  "optionsSafariReset": {
+    "message": "Reset Browser Extension",
+    "description": ""
+  },
+  "optionsDomainRequired": {
+    "message": "Domain is required",
+    "description": ""
+  },
+  "optionsDomainTooLong": {
+    "message": "Domain is too long",
+    "description": ""
+  },
+  "optionsDomainIncorrect": {
+    "message": "Domain is incorrect",
+    "description": ""
+  },
+  "optionsDomainExists": {
+    "message": "Domain exists on the exclusion list",
+    "description": ""
+  },
+  "optionsIconDesc": {
+    "message": "Choose an icon for the 2FAS Browser Extension to personalize its appearance in your browser.",
+    "description": ""
+  },
+  "tokenHeader": {
+    "message": "Your token",
+    "description": ""
+  },
+  "tokenCopy": {
+    "message": "Copy",
+    "description": ""
+  },
+  "tokenCopied": {
+    "message": "Copied",
+    "description": ""
+  },
+  "tokenDescription": {
+    "message": "Copy the token and paste it into the input field. The token will expire in 30 seconds.",
+    "description": ""
+  }
 }

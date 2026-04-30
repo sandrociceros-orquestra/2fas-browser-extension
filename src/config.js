@@ -108,6 +108,14 @@ const config = {
       DeviceUnpaired: {
         Title: browser.i18n.getMessage('errorDeviceUnpairedTitle') || t.errorDeviceUnpairedTitle,
         Message: browser.i18n.getMessage('errorDeviceUnpairedMessage') || t.errorDeviceUnpairedMessage
+      },
+      NoInternet: {
+        Title: browser.i18n.getMessage('errorNoInternetTitle') || t.errorNoInternetTitle,
+        Message: browser.i18n.getMessage('errorNoInternetMessage') || t.errorNoInternetMessage
+      },
+      DevicesUnavailable: {
+        Title: browser.i18n.getMessage('errorDevicesUnavailableTitle') || t.errorDevicesUnavailableTitle,
+        Message: browser.i18n.getMessage('errorDevicesUnavailableMessage') || t.errorDevicesUnavailableMessage
       }
     },
     Warning: {

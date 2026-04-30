@@ -175,6 +175,14 @@
     "message": "No paired devices found",
     "description": ""
   },
+  "devicesListOffline": {
+    "message": "Cannot load paired devices — no internet connection. Please reconnect and refresh this page.",
+    "description": ""
+  },
+  "devicesListError": {
+    "message": "Cannot load paired devices — the 2FAS service is unreachable. Please refresh this page to try again.",
+    "description": ""
+  },
   "noExcludedDomains": {
     "message": "No excluded domains found",
     "description": ""

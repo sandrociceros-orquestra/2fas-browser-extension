@@ -25,7 +25,8 @@ import TwoFasNotification from '@notification';
 import SDK from '@sdk';
 import extPageOnMessage from '@partials/extPageOnMessage.js';
 import { delay, storeLog, handleTargetBlank, hidePreloader, storageValidation } from '@partials';
-import { generateDevicesList, setLoggingToggle, setContextMenuToggle, setPushRadio, setPinInfo, setExtName, setExtNameUpdateForm, setModalsListeners, setAdvanced, setMenuLinks, setPinInfoBtns, setShortcutBox, setHamburger, setExtVersion, generateShortcutBox, generateShortcutLink, showIntegrityError, generateDomainsList, setImportDefaultExcludedDomains, setAutoSubmitSwitch, setIconSelect } from '@optionsPage/functions';
+import S from '@/selectors.js';
+import { generateDevicesList, generateDevicesErrorRow, setLoggingToggle, setContextMenuToggle, setPushRadio, setPinInfo, setExtName, setExtNameUpdateForm, setModalsListeners, setAdvanced, setMenuLinks, setPinInfoBtns, setShortcutBox, setHamburger, setExtVersion, generateShortcutBox, generateShortcutLink, showIntegrityError, generateDomainsList, setImportDefaultExcludedDomains, setAutoSubmitSwitch, setIconSelect } from '@optionsPage/functions';
 
 const init = async storage => {
   i18n();
@@ -49,8 +50,38 @@ const init = async storage => {
     }, 5300);
   }
 
-  const devicesList = await new SDK().getAllPairedDevices(storage.extensionID);
-  generateDevicesList(devicesList);
+  const devicesTbody = document.querySelector(S.optionsPage.devicesList);
+  let devicesList = null;
+  let devicesErrorReason = null;
+
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    devicesErrorReason = 'offline';
+    TwoFasNotification.show(config.Texts.Error.NoInternet);
+  } else {
+    try {
+      const apiResponse = await new SDK().getAllPairedDevices(storage.extensionID);
+
+      if (Array.isArray(apiResponse)) {
+        devicesList = apiResponse;
+      } else {
+        devicesErrorReason = 'apiError';
+      }
+    } catch (err) {
+      await storeLog('error', 21, err, 'optionsPage:getAllPairedDevices');
+      devicesErrorReason = 'apiError';
+    }
+
+    if (devicesErrorReason) {
+      TwoFasNotification.show(config.Texts.Error.DevicesUnavailable);
+    }
+  }
+
+  if (devicesErrorReason) {
+    generateDevicesErrorRow(devicesTbody, devicesErrorReason);
+  } else {
+    generateDevicesList(devicesList);
+  }
+
   generateDomainsList(storage.autoSubmitExcludedDomains);
 
   await Promise.all([
