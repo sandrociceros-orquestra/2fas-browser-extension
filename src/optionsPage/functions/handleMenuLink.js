@@ -38,7 +38,7 @@ const handleMenuLink = function (e) {
     } else {
       el.classList.remove('active');
     }
-  })
+  });
 
   const optionsContent = document.querySelectorAll(S.optionsPage.content);
 
@@ -51,6 +51,6 @@ const handleMenuLink = function (e) {
       el.classList.remove('active');
     }
   });
-}
+};
 
 export default handleMenuLink;

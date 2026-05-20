@@ -30,6 +30,6 @@ const b642ab = base64string => {
   }
 
   return Uint8Array.from(atob(base64string), c => c.charCodeAt(0)).buffer;
-}
+};
 
 export default b642ab;

@@ -37,7 +37,7 @@ const openOptionsPage = e => {
   }
 
   const port = browser.runtime.connect({ name: '2FAS' });
-  
+
   port.postMessage({
     action: 'openBrowserPage',
     url: browser.runtime.getURL('/optionsPage/optionsPage.html')

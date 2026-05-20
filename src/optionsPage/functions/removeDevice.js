@@ -55,14 +55,14 @@ const removeDevice = function (e) {
       return loadFromLocalStorage(['extensionID', 'devices'])
         .then(data => {
           storage = data;
-          return new SDK().removePairedDevice(storage.extensionID, deviceID)
+          return new SDK().removePairedDevice(storage.extensionID, deviceID);
         })
         .then(() => {
           if (!storage || !storage.devices) {
             return [];
           }
 
-          return storage.devices.filter(device => device.device_id !== deviceID)
+          return storage.devices.filter(device => device.device_id !== deviceID);
         })
         .then(devices => {
           let configured = true;
@@ -80,6 +80,6 @@ const removeDevice = function (e) {
         });
     }
   );
-}
+};
 
 export default removeDevice;
