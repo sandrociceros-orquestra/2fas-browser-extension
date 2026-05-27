@@ -64,7 +64,7 @@ class Crypt {
       { name: 'RSA-OAEP', hash: { name: 'SHA-512' } },
       false,
       keyUsages
-    )
+    );
   }
 
   /**

@@ -83,9 +83,8 @@ const onMessage = (request, sender, sendResponse) => {
       }
 
       case 'storageReset': {
-        const browserInfo = getBrowserInfo();
-
-        generateDefaultStorage(browserInfo)
+        getBrowserInfo({ force: true })
+          .then(browserInfo => generateDefaultStorage(browserInfo))
           .then(() => {
             sendResponse({ status: 'ok' });
           })

@@ -23,22 +23,29 @@ import updateBrowserInfo from '@background/functions/updateBrowserInfo.js';
 import { initContextMenu } from '@background/contextMenu/index.js';
 import generateDefaultStorage from '@background/functions/generateDefaultStorage.js';
 import checkSafariStorage from '@background/functions/checkSafariStorage.js';
+import getBrowserInfo from '@background/functions/getBrowserInfo.js';
 
 /**
  * Handles extension installation and update events.
+ *
+ * For 'update' / 'browser_update' reasons we read browser info from storage (preserves the
+ * persisted name + random suffix). For first install we force a fresh name — storage is empty.
+ *
  * @async
  * @param {Object} details - Installation details from the browser.
- * @param {Object} browserInfo - Browser information object.
  * @return {Promise<void>}
  */
-const onInstalled = async (details, browserInfo) => {
+const onInstalled = async details => {
   if (process.env.EXT_PLATFORM !== 'Firefox') {
     await initContextMenu();
   }
 
   if (details?.reason !== 'install') {
+    const browserInfo = await getBrowserInfo();
     return updateBrowserInfo(browserInfo);
   }
+
+  const browserInfo = await getBrowserInfo({ force: true });
 
   if (process.env.EXT_PLATFORM === 'Safari') {
     return checkSafariStorage(browserInfo);

@@ -21,12 +21,15 @@ import config from '@/config.js';
 import { loadFromLocalStorage, saveToLocalStorage } from '@localStorage/index.js';
 import SDK from '@sdk/index.js';
 import storeLog from '@partials/storeLog.js';
-import getBrowserInfo from '@background/functions/getBrowserInfo.js';
 
 /**
- * Updates the browser extension registration with the 2FAS API when version or browser info changes.
+ * Updates the browser extension registration with the 2FAS API when the extension version,
+ * browser name, or browser version changes. The stable extension name (with its persisted
+ * random ID suffix) is preserved across updates — it is only changed via extNameUpdate.
  *
- * @param {Object} browserInfo - Object containing browser name, version, and OS information
+ * @param {Object} browserInfo - Browser info ({ name, browser_name, browser_version }) — `name`
+ *                               is expected to already come from storage when present
+ *                               (see getBrowserInfo()).
  * @returns {Promise<void>} A promise that resolves when the update is complete
  */
 const updateBrowserExtension = async browserInfo => {
@@ -38,26 +41,37 @@ const updateBrowserExtension = async browserInfo => {
     return storeLog('error', 27, err, 'updateBrowserExtension - storage load');
   }
 
-  if (
-    data?.extensionVersion !== config.ExtensionVersion ||
-    !data?.browserInfo ||
-    data?.browserInfo?.browser_version !== browserInfo.browser_version ||
-    data?.browserInfo?.name !== browserInfo.name
-  ) {
-    let bI = browserInfo;
-    const defaultBrowserInfo = getBrowserInfo();
-    bI.name = data?.browserInfo?.name || bI.name || defaultBrowserInfo.name;
-
-    return new SDK().updateBrowserExtension(data.extensionID, bI)
-      .then(() => saveToLocalStorage({ browserInfo: bI, extensionVersion: config.ExtensionVersion }))
-      .then(() => {
-        data = null;
-        bI = null;
-      })
-      .catch(err => storeLog('error', 27, err, 'updateBrowserExtension - API call'));
+  if (!data?.extensionID || typeof data.extensionID !== 'string') {
+    return storeLog(
+      'warning',
+      27,
+      { message: 'Missing extensionID — skipping API call' },
+      'updateBrowserExtension - guard'
+    );
   }
 
+  const storedBrowserInfo = data?.browserInfo;
+  const versionChanged = data?.extensionVersion !== config.ExtensionVersion;
+  const browserNameChanged = storedBrowserInfo?.browser_name !== browserInfo.browser_name;
+  const browserVersionChanged = storedBrowserInfo?.browser_version !== browserInfo.browser_version;
+
+  if (storedBrowserInfo && !versionChanged && !browserNameChanged && !browserVersionChanged) {
+    data = null;
+    return;
+  }
+
+  const payload = {
+    name: browserInfo.name || storedBrowserInfo?.name,
+    browser_name: browserInfo.browser_name || storedBrowserInfo?.browser_name,
+    browser_version: browserInfo.browser_version || storedBrowserInfo?.browser_version
+  };
+
+  const extensionID = data.extensionID;
   data = null;
+
+  return new SDK().updateBrowserExtension(extensionID, payload)
+    .then(() => saveToLocalStorage({ browserInfo: payload, extensionVersion: config.ExtensionVersion }))
+    .catch(err => storeLog('error', 27, err, 'updateBrowserExtension - API call'));
 };
 
 export default updateBrowserExtension;

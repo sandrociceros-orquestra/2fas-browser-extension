@@ -131,7 +131,6 @@ const installPageDevConfig = {
       extensions: ['scss']
     }),
     new ESLintPlugin({
-      configType: 'eslintrc',
       formatter: require('eslint-friendly-formatter'),
       emitError: true,
       emitWarning: true,

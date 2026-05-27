@@ -22,6 +22,7 @@ import loadFromLocalStorage from '@localStorage/loadFromLocalStorage.js';
 import storeLog from '@partials/storeLog.js';
 import delay from '@partials/delay.js';
 import { isValidButtonText } from '@partials/isValidButtonText.js';
+import isVisible from '@partials/isVisible.js';
 import { closestDeep } from '@content/functions/shadowDomUtils.js';
 
 /**
@@ -104,7 +105,9 @@ const getElementNumber = element => {
 
 /**
  * Tries to find and click a submit button within the input's form.
- * Traverses shadowRoots to find the form element.
+ * Traverses shadowRoots to find the form element. Hidden submit buttons
+ * are filtered out so multi-step forms with alternate submits still
+ * resolve to a single visible target.
  *
  * @param {HTMLElement} inputElement - The input element
  * @returns {boolean} True if a form submit button was found and clicked
@@ -116,7 +119,8 @@ const tryFormSubmit = inputElement => {
     return false;
   }
 
-  const formSubmits = Array.from(form.querySelectorAll('button[type="submit"], input[type="submit"]'));
+  const formSubmits = Array.from(form.querySelectorAll('button[type="submit"], input[type="submit"]'))
+    .filter(isVisible);
 
   if (formSubmits.length !== 1) {
     return false;

@@ -43,7 +43,7 @@ const init = async storage => {
       showIntegrityError();
       return false;
     }
-    
+
     return delay(() => {
       return browser.runtime.sendMessage({ action: 'storageReset' })
         .then(() => window.location.reload())

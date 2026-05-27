@@ -20,24 +20,27 @@
 import formSubmitSelectors from '@partials/formSubmitSelectors.js';
 import formSubmitSecondSelectors from '@partials/formSubmitSecondSelectors.js';
 import { isValidButtonText, isSubmitButtonText } from '@partials/isValidButtonText.js';
+import isVisible from '@partials/isVisible.js';
 import { querySelectorAllDeep } from '@content/functions/shadowDomUtils.js';
 
 /**
  * Finds and returns submit button elements in the document.
  * Searches both the main document and any shadowRoots.
+ * Hidden buttons are excluded per-level so the waterfall falls through
+ * to broader selectors when a level returns only hidden matches.
  *
- * @returns {HTMLElement[]} Array of submit button elements
+ * @returns {HTMLElement[]} Array of visible submit button elements
  */
 const getFormSubmitElements = () => {
-  let submits = querySelectorAllDeep(formSubmitSelectors());
+  let submits = querySelectorAllDeep(formSubmitSelectors()).filter(isVisible);
 
   if (submits.length === 0) {
-    submits = querySelectorAllDeep(formSubmitSecondSelectors());
+    submits = querySelectorAllDeep(formSubmitSecondSelectors()).filter(isVisible);
   }
 
   if (submits.length === 0) {
     const buttons = querySelectorAllDeep('input[type="button"],button');
-    submits = buttons.filter(isSubmitButtonText);
+    submits = buttons.filter(isSubmitButtonText).filter(isVisible);
   }
 
   return submits.filter(isValidButtonText);

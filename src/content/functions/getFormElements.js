@@ -21,24 +21,28 @@ import inputsSelectors from '@partials/inputsSelectors.js';
 import formSubmitSelectors from '@partials/formSubmitSelectors.js';
 import formSubmitSecondSelectors from '@partials/formSubmitSecondSelectors.js';
 import { isValidButtonText, isSubmitButtonText } from '@partials/isValidButtonText.js';
+import isVisible from '@partials/isVisible.js';
 import { querySelectorAllDeep } from '@content/functions/shadowDomUtils.js';
 
 /**
- * Finds and returns all form input elements and submit buttons in the document.
- * Searches both the main document and any shadowRoots.
+ * Finds and returns all visible form input elements and submit buttons in the document.
+ * Searches both the main document and any shadowRoots. The submit-selector waterfall
+ * falls through to broader patterns when a level returns only hidden matches, and
+ * hidden elements are stripped from the final result so they don't pollute
+ * data-twofas-element-number numbering used by clickClosestSubmit.
  *
- * @returns {HTMLElement[]} Array of input and submit elements
+ * @returns {HTMLElement[]} Array of visible input and submit elements (in DOM order)
  */
 const getFormElements = () => {
   const inputsSelector = inputsSelectors();
   let submitsSelector = formSubmitSelectors();
   let requiresTextCheck = false;
 
-  if (querySelectorAllDeep(submitsSelector).length === 0) {
+  if (querySelectorAllDeep(submitsSelector).filter(isVisible).length === 0) {
     submitsSelector = formSubmitSecondSelectors();
   }
 
-  if (querySelectorAllDeep(submitsSelector).length === 0) {
+  if (querySelectorAllDeep(submitsSelector).filter(isVisible).length === 0) {
     submitsSelector = 'button';
     requiresTextCheck = true;
   }
@@ -62,15 +66,17 @@ const getFormElements = () => {
     });
   }
 
-  return elements.filter(element => {
-    const nodeName = element.nodeName.toLowerCase();
+  return elements
+    .filter(element => {
+      const nodeName = element.nodeName.toLowerCase();
 
-    if (nodeName !== 'button') {
-      return true;
-    }
+      if (nodeName !== 'button') {
+        return true;
+      }
 
-    return isValidButtonText(element);
-  });
+      return isValidButtonText(element);
+    })
+    .filter(isVisible);
 };
 
 export default getFormElements;

@@ -39,13 +39,15 @@ const isStorageValid = storage => {
 
 /**
  * Verifies that required storage keys exist and regenerates default storage if corrupted.
+ * After regeneration, re-checks that the storage is actually valid — generateDefaultStorage
+ * swallows API errors internally, so a successful await does NOT guarantee a valid storage.
  *
  * @param {Object} browserInfo - Object containing browser name, version, and OS information
- * @returns {Promise<boolean>} A promise that resolves to true if storage is valid or was successfully regenerated
+ * @returns {Promise<boolean>} A promise that resolves to true only if storage is currently valid
  */
 const verifyStorageIntegrity = async browserInfo => {
   try {
-    const storage = await loadFromLocalStorage(['keys', 'extensionID']);
+    let storage = await loadFromLocalStorage(['keys', 'extensionID']);
 
     if (isStorageValid(storage)) {
       return true;
@@ -53,7 +55,9 @@ const verifyStorageIntegrity = async browserInfo => {
 
     await generateDefaultStorage(browserInfo);
 
-    return true;
+    storage = await loadFromLocalStorage(['keys', 'extensionID']);
+
+    return isStorageValid(storage);
   } catch (err) {
     storeLog('error', 29, err, 'verifyStorageIntegrity');
 

@@ -23,14 +23,14 @@ import { v4 as uuidv4 } from 'uuid';
 import getOSName from './getOSName';
 import isBrave from './isBrave';
 import getBrowserVersion from './getBrowserVersion';
+import loadFromLocalStorage from '@localStorage/loadFromLocalStorage.js';
 
 /**
- * Gets browser information including name, version, and OS.
- * @returns {Object} Object containing browser name, version, and OS.
+ * Detects browser name and version from the current userAgent.
+ * Returns fresh values on every call — useful when the user upgrades their browser.
+ * @returns {{ browserName: string, browserVersion: string }}
  */
-const getBrowserInfo = () => {
-  const randomID = uuidv4().substring(0, 4);
-  const osName = getOSName();
+const detectBrowser = () => {
   const userAgent = navigator.userAgent;
   let browserName = 'unknown';
 
@@ -81,8 +81,62 @@ const getBrowserInfo = () => {
 
   const browserVersion = getBrowserVersion(userAgent, versionRegex[browserName]);
 
+  return { browserName, browserVersion };
+};
+
+/**
+ * Builds a default human-readable extension name with a random 4-char suffix.
+ * The suffix exists so multiple installs of the same browser/OS get distinguishable names —
+ * once generated it MUST be persisted in storage; never regenerate it on subsequent reads.
+ * @param {string} browserName
+ * @param {string} osName
+ * @returns {string}
+ */
+const buildDefaultName = (browserName, osName) => {
+  const randomID = uuidv4().substring(0, 4);
+  return `${browserName} ${browser.i18n.getMessage('browserOnOs')} ${osName} (${randomID})`;
+};
+
+/**
+ * Returns browser information, preferring the persisted extension name from storage.
+ *
+ * - `browser_name` and `browser_version` are always derived freshly from navigator.userAgent,
+ *   so a browser upgrade is detected and propagated.
+ * - `name` is read from storage if present (preserves the original random suffix and any
+ *   user-set name from extNameUpdate). A new default name is generated only when there is
+ *   no stored value, or when `force: true` is passed (used by storageReset and the first
+ *   install path where a fresh identity is desired).
+ *
+ * @param {Object} [options]
+ * @param {boolean} [options.force=false] - When true, always generate a fresh default name
+ *                                          (ignores storage). Use for storageReset / install.
+ * @returns {Promise<{ name: string, browser_name: string, browser_version: string }>}
+ */
+const getBrowserInfo = async ({ force = false } = {}) => {
+  const { browserName, browserVersion } = detectBrowser();
+  const osName = getOSName();
+
+  let name;
+
+  if (!force) {
+    try {
+      const stored = await loadFromLocalStorage('browserInfo');
+      const storedName = stored?.browserInfo?.name;
+
+      if (typeof storedName === 'string' && storedName.trim() !== '') {
+        name = storedName;
+      }
+    } catch (e) {
+      // Storage unavailable — fall back to a fresh default name below.
+    }
+  }
+
+  if (!name) {
+    name = buildDefaultName(browserName, osName);
+  }
+
   return {
-    name: `${browserName} ${browser.i18n.getMessage('browserOnOs')} ${osName} (${randomID})`,
+    name,
     browser_name: browserName,
     browser_version: browserVersion
   };
