@@ -74,7 +74,7 @@ const generateDefaultStorage = browserInfo => {
       const extensionInstanceBody = structuredClone(browserInfo);
       extensionInstanceBody.public_key = storage.keys.publicKey;
 
-      return new SDK().createExtensionInstance(extensionInstanceBody)
+      return new SDK().createExtensionInstance(extensionInstanceBody);
     })
     .then(data => saveToLocalStorage({ extensionID: data.id }))
     .then(storage => {

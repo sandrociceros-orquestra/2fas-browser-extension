@@ -59,7 +59,7 @@ const setModalsListeners = () => {
         return hideDomainModal();
       }
     }
-  })
+  });
 };
 
 export default setModalsListeners;

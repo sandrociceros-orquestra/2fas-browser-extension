@@ -20,13 +20,12 @@
 import browser from 'webextension-polyfill';
 import { onConnect, onCommand, onInstalled, onMessage, onStartup } from '@background/events/index.js';
 import { createContextMenus, onContextMenuClick } from '@background/contextMenu/index.js';
-import { getBrowserInfo, browserAction, dummyGetLocalStorage, setIcon } from '@background/functions/index.js';
+import { browserAction, dummyGetLocalStorage, setIcon } from '@background/functions/index.js';
 import { onTabRemoved, onTabUpdated, onTabActivated } from '@background/tabs/index.js';
 
-const browserInfo = getBrowserInfo();
 createContextMenus();
 
-browser.runtime.onInstalled.addListener(details => onInstalled(details, browserInfo));
+browser.runtime.onInstalled.addListener(onInstalled);
 browser.runtime.onMessage.addListener(onMessage);
 browser.runtime.onStartup.addListener(onStartup);
 browser.runtime.onConnect.addListener(onConnect);

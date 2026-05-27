@@ -31,36 +31,72 @@ class SDK {
    * @returns {Promise<Object>} Parsed JSON response or rejection
    */
   onSuccess (res) {
-    if (res.status >= 200 && res.status < 400) {
-      try {
-        return res.json();
-      } catch (err) {
-        return Promise.reject(err);
-      }
+    if (res.status < 200 || res.status >= 400) {
+      return Promise.reject(res);
     }
 
-    // Wrong status code
-    return Promise.reject(res);
+    if (res.status === 204) {
+      return Promise.resolve({});
+    }
+
+    return res.text().then(text => {
+      if (!text) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        return Promise.reject(new SyntaxError(`Invalid JSON response: ${e.message}`));
+      }
+    });
   }
 
   /**
    * Handles API errors and formats error objects.
-   * @param {Response} err - The error response object
+   * Extracts as much useful information as possible from either:
+   *   - a Response (HTTP error) — status, statusText, body (json or text)
+   *   - a network/parse Error — name, message, stack
+   * @param {Response|Error} err - The error to format
    * @returns {Promise<never>} Rejected promise with formatted error
    */
   async onError (err) {
     const errObj = {};
-    errObj.status = err.status;
-    errObj.statusText = err.statusText;
 
-    if (err.status >= 400 && err.status < 500) {
+    if (err instanceof Response) {
+      errObj.status = err.status;
+      errObj.statusText = err.statusText;
+      errObj.url = err.url;
+
       try {
-        errObj.content = await err.json();
+        const text = await err.text();
+
+        if (!text) {
+          errObj.content = '';
+        } else {
+          try {
+            errObj.content = JSON.parse(text);
+          } catch (e) {
+            errObj.content = text;
+          }
+        }
       } catch (e) {
-        errObj.content = err;
+        errObj.content = '';
+        errObj.bodyReadError = e?.message || String(e);
       }
-    } else {
-      errObj.content = err;
+
+      return Promise.reject(errObj);
+    }
+
+    errObj.name = err?.name || 'Error';
+    errObj.message = err?.message || String(err);
+
+    if (err?.stack) {
+      errObj.stack = err.stack;
+    }
+
+    if (err?.cause) {
+      errObj.cause = String(err.cause);
     }
 
     return Promise.reject(errObj);
@@ -92,11 +128,24 @@ class SDK {
 
   /**
    * Updates an existing browser extension instance.
-   * @param {string} extID - The extension ID
-   * @param {Object} browserInfo - Updated browser information
+   * Server requires extension_id to be a valid UUID4 and name to be non-blank.
+   * @param {string} extID - The extension ID (must be a UUID4)
+   * @param {Object} browserInfo - Updated browser information ({ name, browser_name, browser_version })
    * @returns {Promise<Object>} Promise resolving to the updated extension data
    */
   updateBrowserExtension (extID, browserInfo) {
+    if (!extID || typeof extID !== 'string') {
+      return Promise.reject(new Error('updateBrowserExtension: missing or invalid extID'));
+    }
+
+    if (!browserInfo || typeof browserInfo !== 'object') {
+      return Promise.reject(new Error('updateBrowserExtension: missing or invalid browserInfo'));
+    }
+
+    if (!browserInfo.name || typeof browserInfo.name !== 'string' || browserInfo.name.trim() === '') {
+      return Promise.reject(new Error('updateBrowserExtension: name is required and must be non-blank'));
+    }
+
     return fetch(`${this.REST_API_URL}/browser_extensions/${extID}`, {
       headers: {
         Accept: 'application/json',

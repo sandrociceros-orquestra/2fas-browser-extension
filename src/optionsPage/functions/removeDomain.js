@@ -65,6 +65,6 @@ const removeDomain = function (e) {
         });
     }
   );
-}
+};
 
 export default removeDomain;

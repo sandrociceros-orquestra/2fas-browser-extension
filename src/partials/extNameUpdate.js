@@ -70,8 +70,18 @@ const extNameUpdate = (storage, e) => {
     return false;
   }
 
-  const browserInfo = storage.browserInfo;
-  browserInfo.name = extName;
+  if (!storage?.extensionID) {
+    saveBtn.removeAttribute('disabled');
+    errorText.classList.add('error');
+    errorText.innerText = `${config.Texts.Error.UndefinedError.Title}. ${config.Texts.Error.UndefinedError.Message}`;
+    return storeLog('error', 25, { message: 'Missing extensionID' }, 'extNameUpdate - guard');
+  }
+
+  const browserInfo = {
+    name: extName,
+    browser_name: storage.browserInfo?.browser_name,
+    browser_version: storage.browserInfo?.browser_version
+  };
 
   return new SDK().updateBrowserExtension(storage.extensionID, browserInfo)
     .then(() => saveToLocalStorage({ browserInfo }, storage))

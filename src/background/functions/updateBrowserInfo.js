@@ -28,7 +28,13 @@ import { updateBrowserExtension, updateIncognitoAccess, verifyStorageIntegrity }
  */
 const updateBrowserInfo = browserInfo => {
   return verifyStorageIntegrity(browserInfo)
-    .then(() => updateBrowserExtension(browserInfo))
+    .then(valid => {
+      if (!valid) {
+        return undefined;
+      }
+
+      return updateBrowserExtension(browserInfo);
+    })
     .then(updateIncognitoAccess)
     .catch(err => storeLog('error', 6, err, 'updateBrowserInfo'));
 };

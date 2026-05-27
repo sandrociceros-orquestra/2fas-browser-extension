@@ -151,7 +151,6 @@ const optionsPageProdConfig = {
       template: config.extPlatform[process.env.EXT_PLATFORM.toLowerCase()].optionsPageTemplate
     }),
     new ESLintPlugin({
-      configType: 'eslintrc',
       formatter: require('eslint-friendly-formatter'),
       emitError: true,
       emitWarning: true,
